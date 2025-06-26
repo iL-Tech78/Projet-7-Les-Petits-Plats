@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Les Petits Plats - Recettes rapides, simples et savoureuses</title>
+  <meta name="description" content="Recherchez parmi plus de 1500 recettes simples et rapides à préparer. Découvrez des idées cuisine pour tous les jours avec Les Petits Plats.">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/Logo.svg" alt="logo les petits plats">
+      </a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" class="">
+
+      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <h1>Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
+            <div class="search-bar">
+              <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" id="searchInput" name="query" placeholder="Recherchez une recette, un ingrédient, un ustensile..." title="Entrez un mot-clé" aria-label="Recherche de recettes">
+                <!-- Bouton loupe à droite -->
+                <button type="submit" title="Rechercher une recette, un ingrédient, ...">
+                  <i class="bi bi-search"></i>
+                </button>
+              </form>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Section des filtres -->
+    <section id="filters" class="filters container my-4">
+      <div class="row gy-3 justify-content-between align-items-center">
+
+        <!-- Boutons dropdown -->
+        <div class="col-md-3">
+          <button id="filter-ingredients" class="filter-btn w-100 d-flex justify-content-between align-items-center">
+            Ingrédients <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button id="filter-appliances" class="filter-btn w-100 d-flex justify-content-between align-items-center">
+            Appareils <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+        <div class="col-md-3">
+          <button id="filter-ustensils" class="filter-btn w-100 d-flex justify-content-between align-items-center">
+            Ustensiles <i class="bi bi-chevron-down"></i>
+          </button>
+        </div>
+
+        <!-- Compteur -->
+        <div class="col-md-3 text-md-end text-start mt-3 mt-md-0">
+          <p id="recipes-count" class="m-0 fw-bold">1500 recettes</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section des tags actifs que je rempli dynamiquement en JS -->
+    <section id="active-tags" class="container mb-4">
+      <!-- Les tags sélectionnés sont affichées dynamiquement en JS-->
+    </section>
+
+    <!-- Section des recettes -->
+    <section id="recipes" class="container">
+      <div class="row gy-4" id="recipes-container">
+        <!-- Conteneur des cards recettes qui sont injectées dynamiquement en JS -->
+      </div>
+    </section>
+
+  </main>
+  
+  <!-- Footer Section -->
+  <footer id="footer" class="footer light-background">
+    <div class="container">
+      <div class="logo">
+        <img src="assets/img/Logo.svg" alt="Logo petits plats">
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="data/recipes.js"></script>
+  <script type="module" src="scripts/index.js"></script>
+
+
+</body>
+
+</html>
