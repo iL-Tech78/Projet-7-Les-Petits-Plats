@@ -150,6 +150,16 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Mon Bouton Close
+--------------------------------------------------------------*/
+.hero .search-form button.close-btn {
+    right: 50px;
+    background: none;
+    padding: 11px 15px;
+    color: var(--default-color);
+  }
+  
+/*--------------------------------------------------------------
 # Mon Bouton Loupe
 --------------------------------------------------------------*/
 .hero .search-form button[type="submit"] {
