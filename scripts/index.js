@@ -1,7 +1,7 @@
 // Point d’entrée de mon application
 import { getRecipes } from './dataLoader.js';
 import { displayRecipes } from './display.js';
-import { searchRecipes } from './search.js';
+import { searchRecipesFunctional } from './search.js';
 
 let allRecipes = [];
 
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (query.length < 3) {
       displayRecipes(allRecipes);
     } else {
-      const results = searchRecipes(allRecipes, query);
+      const results = searchRecipesFunctional(allRecipes, query);
       displayRecipes(results);
     }
   });
