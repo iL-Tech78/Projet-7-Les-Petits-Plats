@@ -1,12 +1,12 @@
 // Je génère le HTML d’une seule card recette à partir d’un objet recipe
-export function createRecipeCard(recipe) {
+export function createRecipeCard(recipe) { // j'export pour l'utiliser dans display.js
     const col = document.createElement("div");
     col.className = "col-md-4";
   
     const ingredientsList = recipe.ingredients
-      .map((item) => {
-        const qty = item.quantity ? ` : ${item.quantity}` : "";
-        const unit = item.unit ? item.unit : "";
+      .map((item) => { // Je parcourt le tableau recipe.ingredients
+        const qty = item.quantity ? ` : ${item.quantity}` : ""; // Si item.quantity existe je crée un texte : valeur. Sinon je met une chaîne vide "".
+        const unit = item.unit ? item.unit : ""; // Pareil 
         return `<li class="col-6"><strong>${item.ingredient}</strong>${qty} ${unit}</li>`;
       })
       .join("");
