@@ -27,105 +27,96 @@
 </head>
 
 <body>
-
+  <!-- Header section -->
   <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
-
+    <div class="container-fluid d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/Logo.svg" alt="logo les petits plats">
       </a>
-
     </div>
   </header>
 
   <main class="main">
-
-    <!-- Hero Section -->
+    <!-- Hero section -->
     <section id="hero" class="hero section">
-
-      <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" class="">
-
-      <div class="container text-center" data-aos="fade-up" data-aos-delay="100">
+      <img src="assets/img/hero-bg.jpg" alt="" class="">
+      <div class="container text-center">
         <div class="row justify-content-center">
           <div class="col-lg-8">
-            <h1>Cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
+            <h1>cherchez parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
+            <!-- Recherche principale debut -->
             <div class="search-bar">
               <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" id="searchInput" name="query" placeholder="Recherchez une recette, un ingrédient, un ustensile..." title="Entrez un mot-clé" aria-label="Recherche de recettes">
-                <!-- Bouton close -->
-                <button type="button" class="close-btn d-none" id="clearSearch">
-                  <i class="bi bi-x-lg"></i>
-                </button>
-                <!-- Bouton loupe à droite -->
-                <button type="submit" title="Rechercher une recette, un ingrédient, ...">
-                  <i class="bi bi-search"></i>
-                </button>
+                <input type="text" id="searchInput" placeholder="Rechercher une recette, un ingrédient...">
+                <button type="submit"><i class="bi bi-search"></i></button>
+                <button type="button" id="clearSearch" class="d-none">×</button>
               </form>
             </div>
-            
+            <!-- recherche principale fin -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conteneur pour 3 filtres (Ingrédients, Appareils et Ustensiles) -->
+    <section id="filters" class="container my-4">
+      <div class="d-flex gap-3 flex-wrap">
+        <!-- Ingrédients -->
+        <div class="dropdown">
+          <button id="ingredients-button" class="btn btn-secondary">
+            Ingrédients <i class="bi bi-chevron-down"></i>
+          </button>
+          <div id="ingredients-dropdown" class="dropdown-menu">
+            <input type="text" id="ingredients-input" class="form-control mb-2" placeholder="Rechercher un ingrédient">
+            <span class="tag-clear d-none">×</span> <!-- bouton X caché par défaut -->
+            <ul id="ingredients-list" class="list-unstyled mb-0"></ul>
+          </div>
+        </div>
+
+        <!-- Appareils -->
+        <div class="dropdown">
+          <button id="appliances-button" class="btn btn-secondary">
+            Appareils <i class="bi bi-chevron-down"></i>
+          </button>
+          <div id="appliances-dropdown" class="dropdown-menu">
+            <input type="text" id="appliances-input" class="form-control mb-2" placeholder="Rechercher un appareil">
+            <span class="tag-clear d-none">×</span> <!-- bouton X caché par défaut -->
+            <ul id="appliances-list" class="list-unstyled mb-0"></ul>
+          </div>
+        </div>
+
+        <!-- Ustensiles -->
+        <div class="dropdown">
+          <button id="ustensils-button" class="btn btn-secondary">
+            Ustensiles <i class="bi bi-chevron-down"></i>
+          </button>
+          <div id="ustensils-dropdown" class="dropdown-menu">
+            <input type="text" id="ustensils-input" class="form-control mb-2" placeholder="Rechercher un ustensile">
+            <span class="tag-clear d-none">×</span> <!-- bouton X caché par défaut -->
+            <ul id="ustensils-list" class="list-unstyled mb-0"></ul>
           </div>
         </div>
       </div>
 
+      <!-- Afficheage des tags -->
+      <div id="selected-tags" class="mt-3 d-flex flex-wrap gap-2"></div>
     </section>
 
-    <!-- Section des filtres -->
-    <section id="filters" class="filters container my-4">
-      <div class="row gy-3 justify-content-between align-items-center">
-
-        <!-- Boutons dropdown -->
-        <div class="col-md-3">
-          <button id="filter-ingredients" class="filter-btn w-100 d-flex justify-content-between align-items-center">
-            Ingrédients <i class="bi bi-chevron-down"></i>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button id="filter-appliances" class="filter-btn w-100 d-flex justify-content-between align-items-center">
-            Appareils <i class="bi bi-chevron-down"></i>
-          </button>
-        </div>
-        <div class="col-md-3">
-          <button id="filter-ustensils" class="filter-btn w-100 d-flex justify-content-between align-items-center">
-            Ustensiles <i class="bi bi-chevron-down"></i>
-          </button>
-        </div>
-
-        <!-- Compteur -->
-        <div class="col-md-3 text-md-end text-start mt-3 mt-md-0">
-          <p id="recipes-count" class="m-0 fw-bold">1500 recettes</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Section des tags actifs que je rempli dynamiquement en JS -->
-    <section id="active-tags" class="container mb-4">
-      <!-- Les tags sélectionnés sont affichées dynamiquement en JS-->
-    </section>
-
-    <!-- Section des recettes -->
+    <!-- Recipes -->
     <section id="recipes" class="container">
-      <div class="row gy-4" id="recipes-container">
-        <!-- Conteneur des cards recettes qui sont injectées dynamiquement en JS -->
+      <!-- Affichage du nombre de recettes (mis à jour en JS) -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 id="recipes-count">0 recette</h2>
       </div>
+      <!-- Affichage des cards recettes injectées dynamiquement en JS. -->
+      <div id="recipes-container" class="row g-3"></div>
     </section>
 
   </main>
-  
-  <!-- Footer Section -->
-  <footer id="footer" class="footer light-background">
-    <div class="container">
-      <div class="logo">
-        <img src="assets/img/Logo.svg" alt="Logo petits plats">
-      </div>
-    </div>
-  </footer>
 
-
+  <!--  Chargement des données -->
   <script src="data/recipes.js"></script>
   <script type="module" src="scripts/index.js"></script>
-
-
 </body>
 
 </html>

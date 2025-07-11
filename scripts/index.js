@@ -1,40 +1,41 @@
-// Point d’entrée de mon application
 import { getRecipes } from './dataLoader.js';
-import { displayRecipes } from './display.js';
-import { searchRecipesFunctional } from './search.js';
+import { displayRecipes, displaySelectedTags, updateDropdownList } from './display.js';
+import { searchRecipes } from './search.js';
+import { initTagMenus, getSelectedTags } from './tagManager.js';
 
 let allRecipes = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-  allRecipes = getRecipes(); // Je récupération les données depuis mon module
-  displayRecipes(allRecipes); // Pour affichager les cards des recettes
+  allRecipes = getRecipes();
+  displayRecipes(allRecipes);
+  initTagMenus(allRecipes);
 
-  // J'écoute de la recherche
-  const clearBtn = document.getElementById("clearSearch");
   const searchInput = document.getElementById("searchInput");
-  
-  searchInput.addEventListener("input", (e) => {
-    const query = e.target.value;
+  const clearBtn = document.getElementById("clearSearch");
 
-    // Afficher ou masquer le bouton "X"
+  searchInput.addEventListener("input", (e) => {
+    const query = e.target.value.trim();
     if (query.length >= 3) {
       clearBtn.classList.remove("d-none");
     } else {
       clearBtn.classList.add("d-none");
     }
-
-    if (query.length < 3) {
-      displayRecipes(allRecipes);
-    } else {
-      const results = searchRecipesFunctional(allRecipes, query);
-      displayRecipes(results);
-    }
+    refreshRecipes(query);
   });
 
   clearBtn.addEventListener("click", () => {
     searchInput.value = "";
     clearBtn.classList.add("d-none");
-    displayRecipes(allRecipes);
+    refreshRecipes("");
   });
-
 });
+
+export function refreshRecipes(query) {
+  const tags = getSelectedTags();
+  const filtered = searchRecipes(allRecipes, query, tags);
+  displayRecipes(filtered);
+  displaySelectedTags(tags);
+  ['ingredients', 'appliances', 'ustensils'].forEach(type => {
+    updateDropdownList(type, filtered);
+  });
+}

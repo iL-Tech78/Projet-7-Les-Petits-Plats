@@ -268,4 +268,134 @@ h6 {
     font-size: 14px;
     color: var(--default-color);
 }
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    min-width: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+/* Style général des boutons de filtre */
+#filters .btn {
+    background-color: var(--surface-color);
+    color: var(--default-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    position: relative;
+}
+
+#filters .btn i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+#filters .btn.open i {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: var(--surface-color);
+    border: 1px solid #ddd;
+    padding: 10px;
+    min-width: 250px;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.dropdown-menu.open {
+    display: block;
+}
+
+.dropdown-menu input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Liste des tags dans le menu */
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu ul li {
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.dropdown-menu ul li:hover {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+}
+
+/* Tags sélectionnés */
+#selected-tags .tag {
+    background-color: var(--accent-color);
+    color: var(--default-color);
+    padding: 8px 12px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin: 5px;
+    font-size: 18px; /* Ajuste selon le rendu exact */
+}
+
+button#clearSearch {
+    position: absolute;
+    right: 55px;
+    font-size: 35px;
+}
+
+#selected-tags .tag i {
+    margin-left: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.tag-clear {
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+}
+.tag-close {
+    background: var(--accent-color);
+    border: none;
+}
   

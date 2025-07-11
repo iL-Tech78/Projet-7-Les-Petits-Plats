@@ -3,4 +3,3 @@
 export function getRecipes() {
     return recipes; // Le tableau vient de data/recipes.js déjà inclus dans index.html
 }
-  

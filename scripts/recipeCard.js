@@ -1,5 +1,5 @@
 // Je génère le HTML d’une seule card recette à partir d’un objet recipe
-export function createRecipeCard(recipe) {
+export function createRecipeCard(recipe) { // Je crée et j'exporte ma fonction
     const col = document.createElement("div");
     col.className = "col-md-4";
   
