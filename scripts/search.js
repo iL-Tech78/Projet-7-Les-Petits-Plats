@@ -1,28 +1,28 @@
-export function searchRecipes(recipes, query, tags) { // Fct qui recois la liste des recette, le texte taper par l'utilisateur, et le tags.
-  const normalizedQuery = query.toLowerCase(); // tout en minuscule
+// export function searchRecipes(recipes, query, tags) { // Fct qui recois la liste des recette, le texte taper par l'utilisateur, et le tags.
+//   const normalizedQuery = query.toLowerCase(); // tout en minuscule
 
-  return recipes.filter(recipe => { // JE parcourt les recettes et je garde seulement celles qui correspondent aux critères. Le .filter renvoie un nouveau tableau avec uniquement les recettes valides.
-    // Recherche principale
-    const matchQuery = !query || ( //  Si la query est vide → c’est un match (!query). Sinon, je regarde si :
-      recipe.name.toLowerCase().includes(normalizedQuery) || // le nom de la recette contient le texte
-      recipe.description.toLowerCase().includes(normalizedQuery) ||// ou la description
-      recipe.ingredients.some(i => i.ingredient.toLowerCase().includes(normalizedQuery)) // ou un des ingrédients.
-    );
+//   return recipes.filter(recipe => { // JE parcourt les recettes et je garde seulement celles qui correspondent aux critères. Le .filter renvoie un nouveau tableau avec uniquement les recettes valides.
+//     // Recherche principale
+//     const matchQuery = !query || ( //  Si la query est vide → c’est un match (!query). Sinon, je regarde si :
+//       recipe.name.toLowerCase().includes(normalizedQuery) || // le nom de la recette contient le texte
+//       recipe.description.toLowerCase().includes(normalizedQuery) ||// ou la description
+//       recipe.ingredients.some(i => i.ingredient.toLowerCase().includes(normalizedQuery)) // ou un des ingrédients.
+//     );
 
-    // Recherche par tags
-    const matchIngredients = tags.ingredients.every(tag => // Je vérifie que chaque tag ingrédient sélectionné existe dans les ingrédients de la recette.
-      recipe.ingredients.some(i => i.ingredient.toLowerCase() === tag.toLowerCase())
-    );
-    const matchAppliance = tags.appliances.every(tag =>
-      recipe.appliance.toLowerCase() === tag.toLowerCase()
-    );
-    const matchUstensils = tags.ustensils.every(tag =>
-      recipe.ustensils.some(u => u.toLowerCase() === tag.toLowerCase())
-    );
+//     // Recherche par tags
+//     const matchIngredients = tags.ingredients.every(tag => // Je vérifie que chaque tag ingrédient sélectionné existe dans les ingrédients de la recette.
+//       recipe.ingredients.some(i => i.ingredient.toLowerCase() === tag.toLowerCase())
+//     );
+//     const matchAppliance = tags.appliances.every(tag =>
+//       recipe.appliance.toLowerCase() === tag.toLowerCase()
+//     );
+//     const matchUstensils = tags.ustensils.every(tag =>
+//       recipe.ustensils.some(u => u.toLowerCase() === tag.toLowerCase())
+//     );
 
-    return matchQuery && matchIngredients && matchAppliance && matchUstensils; // Le recette est retenue seulement si : elle correspond à la recherche principale et tous les tags sont présents.
-  });
-}
+//     return matchQuery && matchIngredients && matchAppliance && matchUstensils; // Le recette est retenue seulement si : elle correspond à la recherche principale et tous les tags sont présents.
+//   });
+// }
 
 // Boucles classiques
 
