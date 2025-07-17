@@ -44,19 +44,27 @@ export function updateDropdownList(menuType, recipes, searchTerm = "") { // Fonc
   const items = getPossibleTagValues(menuType, recipes);
 
   items
-    .filter(item => item.toLowerCase().includes(searchTerm))
-    .forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      li.addEventListener("click", () => {
-        selectTag(menuType, item);
-        refreshRecipes(document.getElementById("searchInput").value.trim());
-      });
-      listContainer.appendChild(li);
+  .filter(item => {
+    if (!searchTerm) return true; // Aucun texte → on affiche tout
+    if (searchTerm.length >= 3) {
+      return item.includes(searchTerm); // Affiche les items qui contiennent le terme
+    }
+    return false; // Moins de 3 caractères → on affiche rien
+  })
+  .forEach(item => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    li.addEventListener("click", () => {
+      selectTag(menuType, item);
+      refreshRecipes(document.getElementById("searchInput").value.trim());
     });
+    listContainer.appendChild(li);
+  });
+
+
 }
 
-function getPossibleTagValues(type, recipes) { // Fonction privée qui génère tous les tags possibles pour un type donné.
+function getPossibleTagValues(type, recipes) {
   let values = [];
 
   recipes.forEach(recipe => {
@@ -69,5 +77,9 @@ function getPossibleTagValues(type, recipes) { // Fonction privée qui génère 
     }
   });
 
-  return [...new Set(values.map(v => v.toLowerCase()))].sort();
+  // Je simplifie les items : est je garde le premier mot (avant l'espace)
+  const simplified = values.map(v => v.toLowerCase().split(' ')[0]);
+
+  // On retourne des valeurs uniques, triées
+  return [...new Set(simplified)].sort();
 }
